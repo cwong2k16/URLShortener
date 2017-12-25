@@ -6,7 +6,8 @@ var app = express();
 mongoose.connect('mongodb://chris:password@ds163796.mlab.com:63796/urls');
 
 var schema = new mongoose.Schema({
-    Number: String
+    num: Number,
+    url: String
 });
 
 var dbUrl = mongoose.model('urls', schema);
