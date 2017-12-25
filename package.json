@@ -1,0 +1,25 @@
+{
+  "name": "urlshortener",
+  "version": "1.0.0",
+  "description": "a node.js microservice for shortenining URLs",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cwong2k16/URLShortener.git"
+  },
+  "author": "Christopher Wong",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cwong2k16/URLShortener/issues"
+  },
+  "homepage": "https://github.com/cwong2k16/URLShortener#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "mongoose": "^4.13.7",
+    "nodemon": "^1.14.3"
+  }
+}
