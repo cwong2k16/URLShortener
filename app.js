@@ -13,4 +13,4 @@ var dbUrl = mongoose.model('urls', schema);
 
 controller(app, dbUrl);
 
-app.listen(3001);
+app.listen(8080);
