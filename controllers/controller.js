@@ -1,8 +1,13 @@
 var bodyParser = require('body-parser');
 var urlEncodedParser = bodyParser.urlencoded({extended: "false"});
 var validUrl = require('valid-url');
+var path = require('path');
+var dir = path.join(__dirname, '../views/index.html');
 
 module.exports = function(app, dbUrl){
+    app.get('/', function(req, res){
+        res.sendFile(dir);
+    });
     app.get('/api/:url*', function(req, res){
         var url = req.url;
         url = url.slice(5);
