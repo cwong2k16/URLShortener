@@ -6,29 +6,20 @@ module.exports = function(app, dbUrl){
         console.log("Check if valid website");
     });
 
-    // Check if valid shortened url and redirect
-    app.get('/url/:num', function(req, res){
-        // has to be 4 numbers long
-        var num = req.params.num;
-        var itemOne = dbUrl({url:"https://google.com", num: 4444}).save(function(err){
-            if(err){
-                throw err;
-            }
-            console.log("saved");
-        });
-        if((num.length == 4) && !isNaN(num) && (num.indexOf('e') == -1)){
-            dbUrl.find({url:"https://google.com"}, function(err, data){
+    // Check if valid shortened url and redirect (valid means 4 chars long and 0-9 numbers only)
+    app.get('/url/:nums', function(req, res){
+        var nums = req.params.nums;
+        if((nums.length == 4) && !isNaN(nums) && (nums.indexOf('e') == -1)){
+            dbUrl.find({num:nums}, function(err, data){
                 if(err){
                     throw err;
                 }
-                console.log("asdasds" + data);
-                // var url = data[num];
-                // if(!url){
-                //     console.log("Invalid short url!");
-                // }
-                // else{
-                //     res.redirect(url);
-                // }
+                if(data.length > 0){
+                    res.redirect(data[0]["url"]);
+                }
+                else{
+                    console.log("Does not exist in database!");
+                }
             });
         }
         else{
