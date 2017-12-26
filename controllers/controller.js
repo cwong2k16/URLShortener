@@ -1,9 +1,17 @@
 var bodyParser = require('body-parser');
 var urlEncodedParser = bodyParser.urlencoded({extended: "false"});
+var validUrl = require('valid-url');
 
 module.exports = function(app, dbUrl){
-    app.get('/api/:num', function(req, res){
-        console.log("Check if valid website");
+    app.get('/api/:url*', function(req, res){
+        var url = req.url;
+        url = url.slice(5);
+        if(validUrl.isWebUri(url)){
+            console.log("looks good");
+        }
+        else{
+            console.log("doesn't look good");
+        }
     });
 
     // Check if valid shortened url and redirect (valid means 4 chars long and 0-9 numbers only)
